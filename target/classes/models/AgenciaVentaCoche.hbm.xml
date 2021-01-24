@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 30 dic. 2020 15:22:52 by Hibernate Tools 5.4.18.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ventacoches" dynamic-insert="false" dynamic-update="false" mutable="true" name="models.AgenciaVentaCoche" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="agencia_venta_coche">
+        <id name="codigo" type="string">
+            <column length="9" name="codigo"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.Ciudades" embed-xml="true" fetch="select" insert="true" name="ciudades" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="ciudad" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="nombre" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="telefono" optimistic-lock="true" type="long" unique="false">
+            <column name="telefono" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="email" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="email" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="anuncios" optimistic-lock="true" sort="unsorted" table="anuncio">
+            <key on-delete="noaction">
+                <column length="9" name="agencia_cod" not-null="true"/>
+            </key>
+            <one-to-many class="models.Anuncio" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="vehiculos" optimistic-lock="true" sort="unsorted" table="vehiculo">
+            <key on-delete="noaction">
+                <column length="9" name="cod_agencia" not-null="true"/>
+            </key>
+            <one-to-many class="models.Vehiculo" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

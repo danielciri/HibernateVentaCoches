@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 30 dic. 2020 15:22:52 by Hibernate Tools 5.4.18.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ventacoches" dynamic-insert="false" dynamic-update="false" mutable="true" name="models.Ciudades" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="ciudades">
+        <id name="codigoPostal" type="int">
+            <column name="codigo_postal"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.Pais" embed-xml="true" fetch="select" insert="true" name="pais" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="20" name="nombre_pais" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="nombre" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="agenciaVentaCoches" optimistic-lock="true" sort="unsorted" table="agencia_venta_coche">
+            <key on-delete="noaction">
+                <column name="ciudad" not-null="true"/>
+            </key>
+            <one-to-many class="models.AgenciaVentaCoche" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

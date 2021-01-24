@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 30 dic. 2020 15:22:52 by Hibernate Tools 5.4.18.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ventacoches" dynamic-insert="false" dynamic-update="false" mutable="true" name="models.Vehiculo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="vehiculo">
+        <id name="numeroOferta" type="long">
+            <column name="numero_oferta"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.AgenciaVentaCoche" embed-xml="true" fetch="select" insert="true" name="agenciaVentaCoche" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="9" name="cod_agencia" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="marca" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="marca" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="modelo" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="modelo" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="numeroPlazas" optimistic-lock="true" type="long" unique="false">
+            <column name="numero_plazas" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="tipoCambio" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="tipo_cambio" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="anyo" optimistic-lock="true" type="date" unique="false">
+            <column length="4" name="anyo" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="combustible" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="combustible" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="tipo" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="tipo" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="anuncios" optimistic-lock="true" sort="unsorted" table="anuncio">
+            <key on-delete="noaction">
+                <column name="nume_oferta_vehiculo" not-null="true"/>
+            </key>
+            <one-to-many class="models.Anuncio" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

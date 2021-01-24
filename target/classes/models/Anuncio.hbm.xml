@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 30 dic. 2020 15:22:52 by Hibernate Tools 5.4.18.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ventacoches" dynamic-insert="false" dynamic-update="false" mutable="true" name="models.Anuncio" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="anuncio">
+        <id name="codigo" type="int">
+            <column name="codigo"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="models.AgenciaVentaCoche" embed-xml="true" fetch="select" insert="true" name="agenciaVentaCoche" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="9" name="agencia_cod" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="models.Vehiculo" embed-xml="true" fetch="select" insert="true" name="vehiculo" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="nume_oferta_vehiculo" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="fechaPublicacion" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="fecha_publicacion" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="float" unique="false">
+            <column name="precio" not-null="true" precision="12" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="numKm" optimistic-lock="true" type="float" unique="false">
+            <column name="num_km" not-null="true" precision="12" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>
